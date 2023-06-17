@@ -33,7 +33,10 @@ class CitizenController extends Controller
         $data=Citizendatas::all();
         return view('citizendata',compact('data'));
     }
-
+    public function selectdata()
+    {
+        return view('selectexport');
+    }
     public function destroy($id){
         $data=Citizendatas::find($id);
         Citizendatas::where('id', $id)->delete();
@@ -67,6 +70,16 @@ class CitizenController extends Controller
         return redirect('citizendata'   );
 
     }
+    public function exportbydate(){
+        $data=Citizendatas::all();
+        return view('exportpdfbydate',compact('data'));
+
+    }
+    public function exportbyrtrw(){
+        $data=Citizendatas::all();
+        return view('exportpdfbyrtrw',compact('data'));
+
+    }
     // public function exportPdf()
     // {
     //     $data = Citizendatas::all()->toArray();
@@ -76,30 +89,7 @@ class CitizenController extends Controller
     //     return $pdf->download('datawarga.pdf');
     // }
 
-public function exportPDF(Request $request)
-{
-    $tanggalMulai = $request->input('tanggal_mulai');
-    $tanggalSelesai = $request->input('tanggal_selesai');
 
-    // Memfilter data berdasarkan rentang tanggal
-    $data = Citizendatas::whereBetween('created_at', [
-        Carbon::parse($tanggalMulai)->startOfDay(),
-        Carbon::parse($tanggalSelesai)->endOfDay(),
-    ])->get();
-    // Inisialisasi objek Dompdf
-    $dompdf = new Dompdf();
-
-    // Render tampilan blade ke dalam HTML
-    $html = view('pdf.export_pdf', ['data' => $data])->render();
-
-    // Konversi HTML menjadi PDF
-    $dompdf->loadHtml($html);
-    $dompdf->setPaper('A4', 'landscape');
-    $dompdf->render();
-
-    // Mengirim respons PDF ke browser
-    return $dompdf->stream('data_warga.pdf');
-}
 
     
     public function scanqr(){
@@ -124,4 +114,6 @@ public function exportPDF(Request $request)
         // Mengirim data ke view
         return view('citizendata', ['data' => $data]);
     }
+    
+ 
 }

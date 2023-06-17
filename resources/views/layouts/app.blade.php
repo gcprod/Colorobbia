@@ -56,7 +56,7 @@
                                     <a class="nav-link" href="{{ url('citizendata') }}">History</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('export-pdf') }}">Export</a>
+                                    <a class="nav-link" href="{{ url('/selectexport') }}">Export</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/qrscanners') }}">QR Scanner</a>

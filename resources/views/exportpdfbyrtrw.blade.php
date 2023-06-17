@@ -2,24 +2,29 @@
 
 @section('content')
 <div class="container">
+    
     <div class="flex justify-center text align center">
         <div class="card">
-            <div class="card-header text-center">DATA WARGA KAMPUNG DURIAN RUNTUH</div>
-            <form action="{{ route('dataByDate') }}" method="GET">
+            <div class="card-header text-center">PILIH DATA BERDASARKAN RT DAN RW</div>
+            <form action="{{ route('exportPDFbyrtrw') }}" method="GET">
+                
                 <table class="table table-striped">
                     <tr class="text-center">
-                        <td colspan="3">
-                            <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" required>
-                        </td>
-                        <td colspan="3">
-                            <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" required>
-                        </td>
+                        <div class="form-row">
+                            <div class="form-group col-sm">
+                              <label for="nama">RT</label>
+                              <input type="number" name='rt' class="form-control" id="rt">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm">
+                              <label for="nama">RW</label>
+                              <input type="number" name='rw' class="form-control" id="rw">
+                        </div>
                         <td colspan="2">
-                            <button type="submit" class="btn btn-primary">Filter</button>
-                            
+                            <button type="submit" class="btn btn-primary">Export to PDF</button>
                         </td>
                     </tr>
-                
                     <tr>
                         <th>No</th>
                         <th>Nama Kepala Keluarga</th>
@@ -28,7 +33,6 @@
                         <th>RW</th>
                         <th>Status</th>
                         <th>Tanggal</th>
-                        <th>Opsi</th>
                     </tr>
                     @foreach ($data as $item)
                     <tr>
@@ -39,10 +43,7 @@
                         <td>{{ $item['rw'] }}</td>
                         <td>{{ $item['status'] }}</td>
                         <td>{{ $item['created_at'] }}</td>
-                        <td>
-                            <a href="{{ url('update', $item->id) }}" class="btn btn-info">Edit</a>
-                            <a href="{{ url('delete', $item->id) }}" class="btn btn-danger">Delete</a>
-                        </td>
+                        
                     </tr>
                     @endforeach
                 </table>
