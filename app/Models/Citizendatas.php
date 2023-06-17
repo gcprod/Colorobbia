@@ -12,7 +12,7 @@ class Citizendatas extends Model
     use HasFactory;
     protected $table = "citizens";
     protected $guarded = ['id']; 
-    protected $fillable=['namakk','norumah','rt','rw','status'];
+    protected $fillable=['namakk','norumah','rt','rw','status','created_at'];
 
     public $increment = true;
 

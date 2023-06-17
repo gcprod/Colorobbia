@@ -26,9 +26,10 @@
 }
 </style>
 </head>
-        <h1 style="text-align: center;">Data Warga</h1>
+<body>
+    <h1 style="text-align: center;">Data Warga</h1>
 
-        <table id="customers">
+    <table id="customers">
         <tr>
             <th>No</th>
             <th>Nama Kepala Keluarga</th>
@@ -36,19 +37,19 @@
             <th>RT</th>
             <th>RW</th>
             <th>Status</th>
+            <th>Tanggal</th>
         </tr>
+        @foreach ($data as $item )
         <tr>
-            @foreach ($data as $item )
-            <tr>
-                <td>{{$loop->iteration}}</td>
-                <td>{{ $item['namakk'] }}</td>
-                <td>{{ $item['norumah'] }}</td>
-                <td>{{ $item['rt'] }}</td>
-                <td>{{ $item['rw'] }}</td>
-                <td>{{ $item['status'] }}</td>
-                
-                    {{-- <a href={{ url('update', $item->id) }} class="btn btn-info">Edit</a>
-                    <a href={{ url('delete', $item->id) }} class="btn btn-danger">Delete</a> --}}
-            </tr>
-            @endforeach
-       
+            <td>{{$loop->iteration}}</td>
+            <td>{{ $item['namakk'] }}</td>
+            <td>{{ $item['norumah'] }}</td>
+            <td>{{ $item['rt'] }}</td>
+            <td>{{ $item['rw'] }}</td>
+            <td>{{ $item['status'] }}</td>
+            <td>{{ $item['created_at'] }}</td>
+        </tr>
+        @endforeach
+    </table>
+</body>
+</html>

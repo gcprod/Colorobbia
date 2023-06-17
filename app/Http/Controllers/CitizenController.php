@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Citizendatas;
 use App\Models\Qrcitizendatas;
+use Illuminate\Support\Facades\DB;
+use Dompdf\Dompdf;
+
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
@@ -64,14 +67,40 @@ class CitizenController extends Controller
         return redirect('citizendata'   );
 
     }
-    public function exportPdf()
-    {
-        $data = Citizendatas::all()->toArray();
+    // public function exportPdf()
+    // {
+    //     $data = Citizendatas::all()->toArray();
     
-        $pdf = PDF::loadView('pdf.export_pdf', ['data' => $data]);
+    //     $pdf = PDF::loadView('pdf.export_pdf', ['data' => $data]);
     
-        return $pdf->download('datawarga.pdf');
-    }
+    //     return $pdf->download('datawarga.pdf');
+    // }
+
+public function exportPDF(Request $request)
+{
+    $tanggalMulai = $request->input('tanggal_mulai');
+    $tanggalSelesai = $request->input('tanggal_selesai');
+
+    // Memfilter data berdasarkan rentang tanggal
+    $data = Citizendatas::whereBetween('created_at', [
+        Carbon::parse($tanggalMulai)->startOfDay(),
+        Carbon::parse($tanggalSelesai)->endOfDay(),
+    ])->get();
+    // Inisialisasi objek Dompdf
+    $dompdf = new Dompdf();
+
+    // Render tampilan blade ke dalam HTML
+    $html = view('pdf.export_pdf', ['data' => $data])->render();
+
+    // Konversi HTML menjadi PDF
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+
+    // Mengirim respons PDF ke browser
+    return $dompdf->stream('data_warga.pdf');
+}
+
     
     public function scanqr(){
     return view('qrscanner')  ;
@@ -81,5 +110,18 @@ class CitizenController extends Controller
     {
         $data=Qrcitizendatas::all();
         return view('qrcitizendata',compact('data'));
+    }
+    public function dataByDate(Request $request)
+    {
+        $tanggalMulai = $request->input('tanggal_mulai');
+        $tanggalSelesai = $request->input('tanggal_selesai');
+    
+        // Memfilter data berdasarkan rentang tanggal
+        $data = Citizendatas::whereDate('created_at', '>=', Carbon::parse($tanggalMulai)->startOfDay())
+                            ->whereDate('created_at', '<=', Carbon::parse($tanggalSelesai)->endOfDay())
+                            ->get();
+    
+        // Mengirim data ke view
+        return view('citizendata', ['data' => $data]);
     }
 }

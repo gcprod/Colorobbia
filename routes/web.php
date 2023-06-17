@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Citizendatas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/qrinput', [App\Http\Controllers\HomeController::class, 'input'])->name('inputqrdata');
 Route::get('/citizendata', [App\Http\Controllers\CitizenController::class, 'citizendata'])->name('citizendata');
 // Route::get('/citizendata/create', [App\Http\Controllers\CitizenController::class, 'citizendata'])->name('citizendata');
-
+Route::get('/export-pdf', [App\Http\Controllers\CitizenController::class, 'exportPDF'])->name('exportPDF');
 // Route::put('/citizendata', [App\Http\Controllers\CitizenController::class, 'citizendata'])->name('citizendata');
 Route::put('/citizendata', [App\Http\Controllers\HomeController::class, 'store'])->name('citizen.data');
 Route::put('/qrcitizendata', [App\Http\Controllers\HomeController::class, 'qrstore'])->name('qrcitizen.data');
@@ -37,6 +38,8 @@ Route::get('/qrdelete/{id}', [App\Http\Controllers\CitizenController::class, 'qr
 Route::get('/update/{id}', [App\Http\Controllers\CitizenController::class, 'update'])->name('update');
 Route::get('/qrupdate/{id}', [App\Http\Controllers\CitizenController::class, 'qrupdate'])->name('qrupdate');
 Route::put('/edit/{id}', [App\Http\Controllers\CitizenController::class, 'edit'])->name('edit');
-Route::get('/export-pdf', [App\Http\Controllers\CitizenController::class, 'exportPdf'])->name('exportPdf');
+// Route::get('/export-pdf', [App\Http\Controllers\CitizenController::class, 'exportPdf'])->name('exportPdf');
 Route::get('/qrscanners', [App\Http\Controllers\CitizenController::class, 'scanqr'])->name('scanqr');
 Route::get('/qrcitizendata', [App\Http\Controllers\CitizenController::class, 'qrcitizendata'])->name('qrcitizendata');
+Route::get('/citizendata', [App\Http\Controllers\CitizenController::class, 'dataByDate'])->name('dataByDate');
+
