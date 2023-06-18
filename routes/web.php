@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 // });
 Auth::routes();
 Auth::routes(['register' => true]);
-
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/qrinput', [App\Http\Controllers\HomeController::class, 'input'])->name('inputqrdata');
 Route::get('/citizendata', [App\Http\Controllers\CitizenController::class, 'citizendata'])->name('citizendata');
@@ -44,4 +43,4 @@ Route::get('/citizendata', [App\Http\Controllers\CitizenController::class, 'data
 Route::get('/selectexport', [App\Http\Controllers\CitizenController::class, 'selectdata'])->name('selectdata');
 Route::get('/exportbydate', [App\Http\Controllers\CitizenController::class, 'exportbydate'])->name('exportbydate');
 Route::get('/exportbyrtrw', [App\Http\Controllers\CitizenController::class, 'exportbyrtrw'])->name('exportbyrtrw');
-
+Route::get('/users', [App\Http\Controllers\CitizenController::class, 'index'])->name('users.index');

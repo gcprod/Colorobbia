@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="flex justify-center text align center">
         <div class="card">
+            
             <div class="card-header text-center">DATA WARGA KAMPUNG DURIAN RUNTUH</div>
             <form action="{{ route('dataByDate') }}" method="GET">
                 <table class="table table-striped">
@@ -44,13 +46,19 @@
                             <a href="{{ url('delete', $item->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
+                   
                     @endforeach
                 </table>
-                
+                <div>
+                    {!! $chart->container() !!}
+                </div>
                 
             </form>
         </div>
       
     </div>
 </div>
+<script src="{{ $chart->cdn() }}"></script>
+
+{{ $chart->script() }}
 @endsection

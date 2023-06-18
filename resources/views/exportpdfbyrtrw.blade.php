@@ -13,13 +13,13 @@
                         <div class="form-row">
                             <div class="form-group col-sm">
                               <label for="nama">RT</label>
-                              <input type="number" name='rt' class="form-control" id="rt">
+                            <input type="number" name='rt' class="form-control" id="rt">
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-sm">
                               <label for="nama">RW</label>
-                              <input type="number" name='rw' class="form-control" id="rw">
+                        <input type="number" name='rw' class="form-control" id="rw">
                         </div>
                         <td colspan="2">
                             <button type="submit" class="btn btn-primary">Export to PDF</button>

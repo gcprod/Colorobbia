@@ -10,7 +10,7 @@
                 
                 <table class="table table-striped">
                     <tr class="text-center">
-                        <td colspan="3">
+                    <td colspan="3">
                             <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" required>
                         </td>
                         <td colspan="3">

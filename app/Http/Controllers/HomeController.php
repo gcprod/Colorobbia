@@ -33,7 +33,7 @@ class HomeController extends Controller
         // var_dump($request->all()); exit;
 
         Citizendatas::create($request->all());
-        
+
         return redirect('citizendata');
     }
     public function qrstore(Request $request)
@@ -41,7 +41,7 @@ class HomeController extends Controller
         // var_dump($request->all()); exit;
 
         Qrcitizendatas::create($request->all());
-        
+
         return redirect('qrcitizendata');
     }
     public function input()
