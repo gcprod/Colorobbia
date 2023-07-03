@@ -35,8 +35,7 @@
   // handle the scanned code as you like, for example:
     // console.log(`Code matched = ${decodedText}`, decodedResult);
     $("#result").val(decodedText)
-    window.open(decodedText, "_blank");
-
+    window.location.href = decodedText;
     // return Redirect::away("#result")
 }
 

@@ -5,8 +5,9 @@
     <div class="flex justify-center text align center">
         <div class="card">
             <div class="card-header">DATA WARGA KAMPUNG DURIAN RUNTUH</div>
+            <div class="table-responsive">
             <table class="table table-stiped">
-                 
+            
         <tr>
             <th>No</th>
             <th>Nama Kepala Keluarga</th>
@@ -14,6 +15,7 @@
             <th>RT</th>
             <th>RW</th>
             <th>Status</th>
+            <th>Opsi</th>
         </tr>
         @foreach ($data as $item )
             <tr>
@@ -35,6 +37,7 @@
         @endforeach
     </table>
         </div>
+        </div>  
         <div style="text-align: center; margin-bottom: 20px; margin-top: 20px">
             <a href={{ url('qrinput') }} class="btn btn-info">Input Data</a>
         </div>  

@@ -23,9 +23,14 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+
+//Routes authentication
 Auth::routes();
-Auth::routes(['register' => true]);
+//Routes untuk homepage, ketika login,register, dan logout maka diarahkan ke sini
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/qrinput', [App\Http\Controllers\HomeController::class, 'input'])->name('inputqrdata');
 Route::get('/citizendata', [App\Http\Controllers\CitizenController::class, 'citizendata'])->name('citizendata');
 Route::get('/export-pdf-bydate', [App\Http\Controllers\ExportController::class, 'exportPDFbydate'])->name('exportPDFbydate');

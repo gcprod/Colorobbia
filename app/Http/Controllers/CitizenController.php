@@ -21,10 +21,7 @@ class CitizenController extends Controller
      *
      * @return void
      */
-    public function index(MonthlyUsersChart $chart)
-    {
-        return view('index', ['chart' => $chart->build()]);
-    }
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -46,6 +43,7 @@ class CitizenController extends Controller
         $data = Citizendatas::all();
         return view('citizendata', compact('data'));
     }
+
     public function selectdata()
     {
         return view('selectexport');
